@@ -1,0 +1,230 @@
+/* Estilos globales */
+body {
+    font-family: "Agbalumo", system-ui;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    font-size: 18px; /* Tamaño de fuente base */
+}
+
+header {
+    background-color: #35424a;
+    color: #ffffff;
+    padding: 2%;
+    text-align: center;
+    font-size: 1.2rem; /* Tamaño de fuente de encabezado */
+}
+
+/* Estilos para la sección de Héroe */
+.hero {
+    background-image: url('images/presentacion.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 500px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Superposición oscura */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    color: white;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.hero h2 {
+    font-size: 3rem; /* Tamaño del título de la sección Héroe */
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.5rem; /* Tamaño del párrafo de la sección Héroe */
+    margin-bottom: 20px;
+}
+
+/* Estilos para la navegación */
+nav ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 35px;
+}
+
+nav ul li a {
+    color: #c0d6be;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 1.1rem; /* Tamaño de fuente de los enlaces de navegación */
+}
+
+/* Estilos para el contenido principal */
+main {
+    padding: 40px;
+}
+
+section {
+    background-color: #eee4eb;
+    margin-bottom: 50px;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+h1, h2 {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 100;
+    font-style: normal;     
+    color: #35424a;
+    font-size: 2.5rem; /* Tamaño de fuente de títulos */
+}
+
+/* Estilos específicos para secciones */
+#series-video, #galeria {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 20px;
+}
+
+#series-video .serie, #galeria .fotos img {
+    display: inline-block;
+    max-width: 300px;
+    margin-right: 15px; /* Espacio entre los elementos */
+}
+
+/* Estilos específicos para la sección de versículo bíblico */
+#versiculo-biblico {
+    padding: 20px; /* ancho de la seccion */
+    text-align: center;
+    background-color: #eee4eb;
+    border-radius: 20px;
+    margin: 20px 0;
+}
+
+#version-biblia {
+    margin-bottom: 15px;
+    padding: 5px;
+    font-size: 1.1rem; /* Tamaño de fuente del selector de versión de Biblia */
+}
+
+#versiculo {
+    font-family: "Agbalumo", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    max-width: 400px;
+    margin: 0 auto 20px;
+    font-size: 1.2rem; /* Tamaño de fuente del versículo */
+}
+
+/* Estilos para redes sociales */
+#redes-sociales {
+    text-align: center;
+    padding: 20px;
+}
+
+#redes-sociales a {
+    margin: 0 10px;
+    color: #d2dbe0;
+    text-decoration: none;
+    font-size: 1.2rem; /* Tamaño de fuente de los enlaces de redes sociales */
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    font-family: Arial, sans-serif;
+    font-size: 1.1rem; /* Tamaño de fuente de los botones de redes sociales */
+}
+
+.facebook {
+    background-color: #3b5998;
+}
+
+.instagram {
+    background-color: #c13584;
+}
+
+.youtube {
+    background-color: #ff0000;
+}
+
+.social-button:hover {
+    opacity: 0.8;
+}
+
+/* Estilos para la Galería de fotos */
+#galeria .fotos img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Efecto de zoom al pasar el mouse */
+.fotos img:hover {
+    transform: scale(1.05);
+}
+
+/* Estilos para el footer */
+footer {
+    background-color: #35424a;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    font-size: 1rem; /* Tamaño de fuente del pie de página */
+}
+
+
+.modal-content img {
+    width: 100%;
+    height: auto;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover {
+    color: #ccc;
+}
+
