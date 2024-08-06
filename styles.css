@@ -1,12 +1,12 @@
 /* Estilos globales */
 body {
     font-family: "Rubik", sans-serif;
-    color: #ffffff;
+    color: #bebebe;
     line-height: 1.6;
     margin: 0;
     padding: 0;
     background-color: #003d66;
-    font-size: 10px; /* Tamaño de fuente base */
+    font-size: 17px; /* Tamaño de fuente base */
 }
 
 header {
@@ -228,4 +228,6 @@ footer {
 .close:hover {
     color: #ccc;
 }
+
+
 
