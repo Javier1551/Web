@@ -17,20 +17,23 @@
                 <p> </p>
             </div>
         </section>
-        <h1>Fundacion Mision Vida</h1>
+        <h1>Fundación Misión Vida</h1>
         <nav>
             <ul>
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="#versiculo-biblico">Versículo del Día</a></li>
                 <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#eventos">Eventos</a></li>
+                <li><a href="#Grupos">Grupos de Vida</a></li>
                 <li><a href="#video">Sermones</a></li>
                 <li><a href="#series-video">Biblia APP</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="Pastores.html">Pastores</a></li>
+                <li><a href="Eventos.html">Eventos</a></li>
+                <li><a href="Servicios.html">Servicios</a></li>
             </ul>
         </nav>
     </header>
+
 
     <main>
         <section id="nosotros">
@@ -57,22 +60,46 @@
 
         <section id="servicios">
             <h2>Nuestros Servicios</h2>
-            <ul>
                 <li>Culto: Sábados 20:30</li>
                 <li>Reunión de oración: Jueves 20:30</li>
                 <li>Grupo de Jóvenes: Viernes 21:00</li>
-            </ul>
         </section>
 
-        <section id="eventos">
-            <h2>Próximos Eventos</h2>
-            <p>Retiro de Varones: Del 3 al 4 de Agosto</p>
+
+           <!-- Grupos de Vida -->
+        <section id="Grupos">
+            <h2>Grupos de Vida</h2>
+            <div class="ministerio">
+                <div class="descripcion">
+                    <h2>Grupos de Vida de Varones</h2>
+                    <p>Jose Luis Lardone: Lunes 21:00</p>
+                    <p>Gustavo Nazario: Lunes 21:00</p>
+                    <p>Jose Luis Lardone: Lunes 21:00</p>
+                    <p>Jose Luis Lardone: Lunes 21:00</p>
+                    <p>Jose Luis Lardone: Lunes 21:00</p>
+                    <p>Jose Luis Lardone: Lunes 21:00</p>
+                </div>
+                <img src="images/familia2.jpg" alt="Grupos de Vida">
+                <div class="descripcion">
+                    <h2>Grupos de Vida de  Mujeres</h2>
+                    <p>Silvia Luna: Martes 9:30</p>
+                    <p>Gilda Martinez: Jueves 15:00</p>                        
+                    <p>Silvia Luna: Martes 9:30</p>
+                    <p>Gilda Martinez: Jueves 15:00</p>
+                    <p>Silvia Luna: Martes 9:30</p>
+                    <p>Gilda Martinez: Jueves 15:00</p>
+                </div>
+            </div>
+            <!-- Añade más ministerios aquí -->
         </section>
 
+
+
+       <!-- section Ultimo Sermon -->
         <section id="video" class="full-screen-video">
             <h2>Nuestro último sermón</h2>
             <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/8xyW2euX4sM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/MwiGQdWk6Dw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
         </section>
 
@@ -122,25 +149,25 @@
         <section id="galeria" class="scroll-horizontal">
             <h2>Galería de fotos</h2>
             <div class="fotos">
-                <img src="images/pastor1.jpeg" alt="Pastor Juan Carlos Garcia">
-                <img src="images/pastores.jpeg" alt="Juan Carlos y Liliana Garcia">
-                <img src="images/familia.jpeg" alt="Somos familia">
-                <img src="images/foto0.jpg" alt="0">
-                <img src="images/foto1.jpg" alt="1">
-                <img src="images/foto2.jpg" alt="2">
-                <img src="images/foto3.jpg" alt="3">
-                <img src="images/foto4.jpg" alt="4">
-                <img src="images/foto5.jpg" alt="5">
-                <img src="images/foto6.jpg" alt="6">
-                <img src="images/foto7.jpg" alt="7">
-                <img src="images/foto8.jpg" alt="8">
-                <img src="images/foto9.jpg" alt="9">
-                <img src="images/foto10.jpg" alt="10">
-                <img src="images/foto11.jpg" alt="11">
-                <img src="images/foto12.jpg" alt="12">
-                <img src="images/foto13.jpg" alt="13">
-                <img src="images/foto14.jpg" alt="14">
-                <img src="images/foto15.jpg" alt="15">
+                <img src="images/pastor1.jpeg" alt="Pastor Juan Carlos Garcia" onclick="openModal(this)">
+                <img src="images/pastores.jpeg" alt="Juan Carlos y Liliana Garcia" onclick="openModal(this)">
+                <img src="images/familia.jpeg" alt="Somos familia" onclick="openModal(this)">
+                <img src="images/foto0.jpg" alt="0" onclick="openModal(this)">
+                <img src="images/foto1.jpg" alt="1" onclick="openModal(this)">
+                <img src="images/foto2.jpg" alt="2" onclick="openModal(this)">
+                <img src="images/foto3.jpg" alt="3" onclick="openModal(this)">
+                <img src="images/foto4.jpg" alt="4" onclick="openModal(this)">
+                <img src="images/foto5.jpg" alt="5" onclick="openModal(this)">
+                <img src="images/foto6.jpg" alt="6" onclick="openModal(this)">
+                <img src="images/foto7.jpg" alt="7" onclick="openModal(this)">
+                <img src="images/foto8.jpg" alt="8" onclick="openModal(this)">
+                <img src="images/foto9.jpg" alt="9" onclick="openModal(this)">
+                <img src="images/foto10.jpg" alt="10" onclick="openModal(this)">
+                <img src="images/foto11.jpg" alt="11" onclick="openModal(this)">
+                <img src="images/foto12.jpg" alt="12" onclick="openModal(this)">
+                <img src="images/foto13.jpg" alt="13" onclick="openModal(this)">
+                <img src="images/foto14.jpg" alt="14" onclick="openModal(this)">
+                <img src="images/foto15.jpg" alt="15" onclick="openModal(this)">
             </div>
         </section>
 
@@ -159,6 +186,7 @@
             <p>Teléfono: (353) 456-7890</p>
             <p>Dirección: Calle: Gorrti 250, Ciudad: Villa Maria</p>
         </section>
+
     </main>
 
     <footer>
