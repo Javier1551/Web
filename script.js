@@ -78,29 +78,31 @@ document.addEventListener('DOMContentLoaded', function() {
     // Cargar versículos y mostrar el inicial
     cargarVersiculos();
 
-    // Modal de imágenes
-    const modal = document.getElementById('modal');
-    const modalImg = document.getElementById('modal-img');
-    const closeModal = document.getElementById('close');
+    
+// Obtener el modal
+var modal = document.getElementById("modal");
 
-    if (modal && modalImg && closeModal) {
-        document.querySelectorAll('#galeria .fotos img').forEach(img => {
-            img.addEventListener('click', (event) => {
-                modal.style.display = 'block';
-                modalImg.src = event.target.src;
-            });
-        });
+// Obtener la imagen y el elemento de inserción de la imagen dentro del modal
+var modalImg = document.getElementById("modal-img");
 
-        closeModal.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
+// Obtener el botón de cerrar
+var span = document.getElementById("close");
 
-        window.addEventListener('click', (event) => {
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
-    } else {
-        console.error('No se encontraron los elementos del modal en el DOM.');
+// Función para abrir el modal al hacer clic en una imagen
+function openModal(element) {
+    modal.style.display = "block";
+    modalImg.src = element.src;
+}
+
+// Función para cerrar el modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// Cerrar el modal al hacer clic fuera de la imagen
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
     }
+}
 });
