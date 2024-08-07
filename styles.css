@@ -14,7 +14,7 @@ header {
     color: #ffffff;
     padding: 2%;
     text-align: center;
-    font-size: 1rem; /* Tamaño de fuente de encabezado */
+    font-size: 1.2rem; /* Tamaño de fuente de encabezado */
 }
 
 /* Estilos para la sección de Héroe */
@@ -70,12 +70,24 @@ nav ul li {
     margin-right: 35px;
 }
 
+/* Efecto hover para los enlaces de navegación */
 nav ul li a {
     color: #c0d6be;
     text-decoration: none;
     font-family: Arial, sans-serif;
     font-size: 1.1rem; /* Tamaño de fuente de los enlaces de navegación */
+    transition: color 0.3s ease, background-color 0.3s ease; /* Transiciones para color y fondo */
 }
+
+nav ul li a:hover {
+    color: #ffffff; /* Color al pasar el mouse */
+    background-color: #012e4d; /* Fondo al pasar el mouse */
+    padding: 5px; /* Añadir padding para el efecto de fondo */
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+
+
 
 /* Estilos para el contenido principal */
 main {
@@ -132,7 +144,7 @@ h1, h2 {
     font-style: normal;
     max-width: 400px;
     margin: 0 auto 20px;
-    font-size: 1.2rem; /* Tamaño de fuente del versículo */
+    font-size: 1rem; /* Tamaño de fuente del versículo */
 }
 
 /* Estilos para redes sociales */
@@ -191,6 +203,50 @@ h1, h2 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Estilos para el modal */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.8); 
+}
+
+.modal-content {
+    margin: 15% auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+#modal-img {
+    width: 100%;
+    height: auto;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
 /* Efecto de zoom al pasar el mouse */
 .fotos img:hover {
     transform: scale(1.05);
@@ -230,4 +286,149 @@ footer {
 }
 
 
+html {
+    scroll-behavior: smooth;
+}
 
+/* Estilos para la sección de eventos
+.evento {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #33683d;
+    border-radius: 5px;
+}
+
+.evento img {
+    max-width: 200px;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+
+.evento .descripcion {
+    color: #c0d6be;
+    text-align: left;
+}
+
+.evento .descripcion h3 {
+    margin-top: 0;
+    font-size: 1.8rem;
+    color: #ffffff;
+}
+
+.evento .descripcion p {
+    font-size: 1.1rem;
+} */
+
+/* Estilos para la sección de eventos */
+.eventos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.evento {
+    display: flex;
+    align-items: center;
+    background-color: #33683d;
+    border-radius: 5px;
+    overflow: hidden; /* Para asegurarse de que las imágenes no sobresalgan */
+}
+
+.evento img {
+    width: 50%;
+    border-radius: 5px 0 0 5px;
+}
+
+.evento .descripcion {
+    padding: 20px;
+    color: #c0d6be;
+    text-align: left;
+}
+
+.evento .descripcion h3 {
+    margin-top: 0;
+    font-size: 1.8rem;
+    color: #ffffff;
+}
+
+.evento .descripcion p {
+    font-size: 1.1rem;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .eventos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .evento img {
+        width: 100%;
+        border-radius: 5px 5px 0 0;
+    }
+
+    .evento {
+        flex-direction: column;
+    }
+}
+
+
+/* Estilos para la sección de ministerios */
+#ministerios {
+    margin: 20px 0;
+}
+
+.ministerio {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #33683d;
+    border-radius: 5px;
+}
+
+.ministerio:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.ministerio img {
+    width: 30%;
+    border-radius: 5px;
+    margin: 0 20px;
+}
+
+.ministerio .descripcion {
+    width: 30%;
+    color: #c0d6be;
+}
+
+.ministerio .descripcion h3 {
+    margin-top: 0;
+    font-size: 1.8rem;
+    color: #ffffff;
+}
+
+.ministerio .descripcion p {
+    font-size: 1.1rem;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .ministerio {
+        flex-direction: column;
+    }
+
+    .ministerio:nth-child(even) {
+        flex-direction: column;
+    }
+
+    .ministerio img {
+        width: 100%;
+        margin: 0 0 20px 0;
+    }
+
+    .ministerio .descripcion {
+        width: 100%;
+    }
+}
