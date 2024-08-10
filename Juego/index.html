@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iglesia Cristiana - Juego Bíblico</title>
+    <link rel="stylesheet" href="css/Juego.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Pathway+Gothic+One&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+</head>
+<body onload="reproducirMensaje()">
+    <header>
+        <h1>Bienvenido al Juego Bíblico</h1>
+        <h2>¿Qué tanto sabes de la Biblia?</h2>
+        <nav>
+            <ul>
+                <li><a href="../#inicio">Inicio</a></li>
+                <li><a href="../#nosotros">Nosotros</a></li>
+                <li><a href="../#versiculo-biblico">Versículo del Día</a></li>
+                <li><a href="../#Culto">Cultos</a></li>
+                <li><a href="../#Grupos">Grupos de Vida</a></li>
+                <li><a href="../#video">Sermones</a></li>
+                <li><a href="../#series-video">Biblia APP</a></li>
+                <li><a href="../Pastores.html">Pastores</a></li>
+                <li><a href="../Eventos.html">Eventos</a></li>
+                <li><a href="../Servicios.html">Servicios</a></li>
+                <li><a href="../noticias.html">Noticias Mision Vida</a></li>
+                <li><a href="../Juego/index.html">Juego Bíblico</a></li>
+            </ul>
+        </nav>
+        
+    </header>
+
+    <main>
+        <section id="menu-principal">
+            <h2>Menú Principal</h2>
+            <button onclick="location.href='juegobiblico.html'; reproducirSonidoBoton();">Comenzar Juego</button>
+            <button onclick="mostrarReglas(); reproducirSonidoBoton();">Reglas del Juego</button>
+        </section>
+
+        <section id="reglas" style="display:none;">
+            <h2>Reglas del Juego</h2>
+            <p>Responde la mayor cantidad de preguntas posible.</p>
+            <p>Tienes 15 segundos para responder cada pregunta.</p>
+            <p>El juego termina cuando cometes 5 errores.</p>
+            <button onclick="ocultarReglas(); reproducirSonidoBoton();">Volver</button>
+        </section>
+
+        <section id="redes-sociales">
+            <h2>Síguenos en redes sociales</h2>
+            <div class="social-buttons">
+                <a href="https://www.facebook.com/misionvidaoficial?mibextid=ZbWKwL" target="_blank" class="social-button facebook">Facebook</a>
+                <a href="https://www.instagram.com/misionvidaoficial/" target="_blank" class="social-button instagram">Instagram</a>
+                <a href="https://www.youtube.com/@misionvidaoficial9413" target="_blank" class="social-button youtube">YouTube</a>
+            </div>
+        </section>
+
+        <section>
+            <h2>Contáctanos</h2>
+            <p>Email: fcmisionvida@gmail.com</p>
+            <p>Teléfono: (353) 456-7890</p>
+            <p>Dirección: Calle: Gorrti 250, Ciudad: Villa Maria</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Iglesia Cristiana Mision Vida. Todos los derechos reservados.</p>
+    </footer>
+
+    <audio id="mensajeVoz" src="bienvenida.mp3"></audio>
+    <audio id="sonidoBoton" src="Click.mp3"></audio>
+
+    <script>
+        function mostrarReglas() {
+            document.getElementById('menu-principal').style.display = 'none';
+            document.getElementById('reglas').style.display = 'block';
+        }
+
+        function ocultarReglas() {
+            document.getElementById('menu-principal').style.display = 'block';
+            document.getElementById('reglas').style.display = 'none';
+        }
+
+        function reproducirMensaje() {
+            const mensajeVoz = document.getElementById('mensajeVoz');
+            mensajeVoz.play().catch(error => console.error('Error al reproducir el mensaje de voz:', error));
+        }
+
+        function reproducirSonidoBoton() {
+            const sonidoBoton = document.getElementById('sonidoBoton');
+            sonidoBoton.play().catch(error => console.error('Error al reproducir el sonido del botón:', error));
+        }
+    </script>
+</body>
+</html>
