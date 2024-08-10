@@ -1,0 +1,458 @@
+body {
+    font-family: "Rubik", sans-serif;
+    color: #bebebe;
+    line-height: 1.6;
+    background-image: url('../imagesJuego/wallpaper.jpg'); /* Asegúrate de que esta ruta sea correcta */
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+header {
+    background-color: #012e4d;
+    color: #ffffff;
+    padding: 2%;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+/* Estilos para la navegación */
+nav ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 35px;
+}
+
+/* Efecto hover para los enlaces de navegación */
+nav ul li a {
+    color: #c0d6be;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 1.1rem; /* Tamaño de fuente de los enlaces de navegación */
+    transition: color 0.3s ease, background-color 0.3s ease; /* Transiciones para color y fondo */
+}
+
+nav ul li a:hover {
+    color: #ffffff; /* Color al pasar el mouse */
+    background-color: #012e4d; /* Fondo al pasar el mouse */
+    padding: 5px; /* Añadir padding para el efecto de fondo */
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+
+main {
+    padding: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.4);
+}
+
+#pregunta-container {
+    margin: 20px 0;
+}
+
+#opciones {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+#mensaje {
+    margin: 20px 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#contador-preguntas,
+#contador-tiempo {
+    margin: 10px 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Transición suave al volver al menú */
+body.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+
+/* Estilos para la sección de Héroe */
+.hero {
+    background-image: url('images/presentacion.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 500px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Superposición oscura */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    color: rgb(255, 6, 234);
+    max-width: 800px;
+    padding: 20px;
+}
+
+.hero h2 {
+    font-size: 3rem; /* Tamaño del título de la sección Héroe */
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.5rem; /* Tamaño del párrafo de la sección Héroe */
+    margin-bottom: 20px;
+}
+
+/* Estilos específicos para secciones */
+#series-video, #galeria {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 20px;
+}
+
+#series-video .serie, #galeria .fotos img {
+    display: inline-block;
+    max-width: 300px;
+    margin-right: 15px; /* Espacio entre los elementos */
+}
+
+/* Estilos específicos para la sección de versículo bíblico */
+#versiculo-biblico {
+    padding: 20px; /* ancho de la seccion */
+    text-align: center;
+    background-color: #33683d;
+    border-radius: 20px;
+    margin: 20px 0;
+}
+
+#version-biblia {
+    margin-bottom: 15px;
+    padding: 5px;
+    font-size: 1.1rem; /* Tamaño de fuente del selector de versión de Biblia */
+}
+
+#versiculo {
+    font-family: "Rubik", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    max-width: 400px;
+    margin: 0 auto 20px;
+    font-size: 1rem; /* Tamaño de fuente del versículo */
+}
+
+/* Estilos para redes sociales */
+#redes-sociales {
+    text-align: center;
+    padding: 20px;
+}
+
+#redes-sociales a {
+    margin: 0 10px;
+    color: #d2dbe0;
+    text-decoration: none;
+    font-size: 1.2rem; /* Tamaño de fuente de los enlaces de redes sociales */
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    font-family: Arial, sans-serif;
+    font-size: 1.1rem; /* Tamaño de fuente de los botones de redes sociales */
+}
+
+.facebook {
+    background-color: #3b5998;
+}
+
+.instagram {
+    background-color: #c13584;
+}
+
+.youtube {
+    background-color: #ff0000;
+}
+
+.social-button:hover {
+    opacity: 0.8;
+}
+
+/* Estilos para la Galería de fotos */
+#galeria .fotos img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el modal */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.8); 
+}
+
+.modal-content {
+    margin: 15% auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+#modal-img {
+    width: 100%;
+    height: auto;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+
+/* Efecto de zoom al pasar el mouse */
+.fotos img:hover {
+    transform: scale(1.05);
+}
+
+/* Estilos para el footer */
+footer {
+    background-color: #012e4d;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    font-size: 1rem; /* Tamaño de fuente del pie de página */
+}
+
+
+.modal-content img {
+    width: 100%;
+    height: auto;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover {
+    color: #ccc;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* Estilos para la sección de eventos */
+.eventos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.evento {
+    display: flex;
+    align-items: center;
+    background-color: #33683d;
+    border-radius: 5px;
+    overflow: hidden; /* Para asegurarse de que las imágenes no sobresalgan */
+}
+
+.evento img {
+    width: 50%;
+    border-radius: 5px 0 0 5px;
+}
+
+.evento .descripcion {
+    padding: 20px;
+    color: #c0d6be;
+    text-align: left;
+}
+
+.evento .descripcion h3 {
+    margin-top: 0;
+    font-size: 1.8rem;
+    color: #ffffff;
+}
+
+.evento .descripcion p {
+    font-size: 1.1rem;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .eventos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .evento img {
+        width: 100%;
+        border-radius: 5px 5px 0 0;
+    }
+
+    .evento {
+        flex-direction: column;
+    }
+}
+
+
+/* Estilos para la sección de ministerios */
+#ministerios {
+    margin: 20px 0;
+}
+
+.ministerio {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #33683d;
+    border-radius: 5px;
+}
+
+.ministerio:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.ministerio img {
+    width: 30%;
+    border-radius: 5px;
+    margin: 0 20px;
+}
+
+.ministerio .descripcion {
+    width: 30%;
+    color: #c0d6be;
+}
+
+.ministerio .descripcion h3 {
+    margin-top: 0;
+    font-size: 1.8rem;
+    color: #ffffff;
+}
+
+.ministerio .descripcion p {
+    font-size: 1.1rem;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .ministerio {
+        flex-direction: column;
+    }
+
+    .ministerio:nth-child(even) {
+        flex-direction: column;
+    }
+
+    .ministerio img {
+        width: 100%;
+        margin: 0 0 20px 0;
+    }
+
+    .ministerio .descripcion {
+        width: 100%;
+    }
+}
+
+
+/* Estilos para la sección de radio y música */
+#radio, #musica {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #33683d;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#radio h2, #musica h2 {
+    font-size: 2rem;
+    color: #ffffff;
+}
+
+audio {
+    width: 100%;
+    max-width: 500px;
+    margin-top: 20px;
+}
+

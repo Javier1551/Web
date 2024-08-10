@@ -1,0 +1,22 @@
+{
+    "noticias": [
+        {
+            "titulo": "Retiro Espiritual de Jóvenes 2024",
+            "descripcion": "Este próximo mes de septiembre se llevará a cabo el retiro espiritual para jóvenes...",
+            "enlace": "Noticias1.html",
+            "imagen": "imagesnoticias/ArteVida.jpg"
+        },
+        {
+            "titulo": "Campaña de Ayuda Comunitaria",
+            "descripcion": "La iglesia estará organizando una campaña de ayuda comunitaria el próximo fin de semana...",
+            "enlace": "https://www.youtube.com/watch?v=U1SlybAY07E",
+            "imagen": "images/ayuda-comunitaria.jpg"
+        },
+        {
+            "titulo": "Nuevo Curso Bíblico: Profundizando en la Fe",
+            "descripcion": "Te invitamos a participar en nuestro nuevo curso bíblico...",
+            "enlace": "https://www.youtube.com/watch?v=U1SlybAY07E",
+            "imagen": "images/curso-biblico.jpg"
+        }
+    ]
+}
