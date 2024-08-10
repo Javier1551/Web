@@ -1,7 +1,0 @@
-script.js:20 Uncaught TypeError: Cannot set properties of null (setting 'volume')
-    at HTMLDocument.<anonymous> (script.js:20:22)
-tiempoAgotado.mp3:1 
-        
-        
-       Failed to load resource: the server responded with a status of 404 (File not found)
-index.html:75 Uncaught (in promise) DOMException: play() failed because the user didn't interact with the document first. https://goo.gl/xX8pDD
