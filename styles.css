@@ -7,7 +7,7 @@ body {
     padding: 0;
     background-color: #003d66;
     font-size: 17px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.767);
 }
 
 header {
@@ -64,10 +64,11 @@ header {
 nav ul {
     padding: 0;
     list-style-type: none;
+    text-align: center;
 }
 
 nav ul li {
-    display: inline;
+    display: inline-block;
     margin-right: 35px;
 }
 
@@ -75,7 +76,7 @@ nav ul li a {
     color: #c0d6be;
     text-decoration: none;
     font-family: Arial, sans-serif;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.767);
     font-size: 1.1rem;
     transition: color 0.3s ease, background-color 0.3s ease;
 }
@@ -106,6 +107,7 @@ h1, h2 {
     font-style: normal;     
     color: #b8b8b8;
     font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.849);
 }
 
 /* Estilos específicos para secciones */
@@ -198,7 +200,7 @@ h1, h2 {
     object-fit: cover;
     border-radius: 8px;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.767);
 }
 
 /* Estilos para el modal */
@@ -323,16 +325,16 @@ footer {
     gap: 20px;
     margin-bottom: 20px;
     padding: 20px;
-    background-color: #f4f4f4;
+    background-color: #f4f4f49a;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.767);
 }
 
 .ministerio-img {
     max-width: 150px;
     border-radius: 8px;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.767);
 }
 
 .ministerio .descripcion {
@@ -359,49 +361,48 @@ footer {
 }
 
 .ministerio .descripcion a:hover {
-    color: #003d66;
+    color: #004080;
 }
 
-/* Estilos para la sección de noticias */
-#noticias {
-    padding: 20px;
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 600px) {
+    .ministerio {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .ministerio-img {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 300px;
+    }
 }
 
-.noticia, .detalle-noticia {
-    background-color: #f4f4f4;
-    margin-bottom: 20px;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-}
+@media (max-width: 480px) {
+    header {
+        font-size: 1.5rem;
+        padding: 20px;
+    }
 
-.noticia img, .detalle-noticia img {
-    max-width: 150px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+    nav ul li {
+        display: block;
+        margin: 0 auto;
+        padding: 10px 0;
+    }
 
-.noticia h3, .detalle-noticia h2 {
-    font-size: 1.8rem;
-    color: #35424a;
-}
+    .hero h2 {
+        font-size: 2.5rem;
+    }
 
-.noticia p, .detalle-noticia p {
-    font-size: 1.2rem;
-    color: #555;
-}
+    .hero p {
+        font-size: 1.2rem;
+    }
 
-.noticia a, .detalle-noticia a {
-    text-decoration: none;
-    color: #0066cc;
-    font-weight: bold;
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
-}
+    .ministerio .descripcion p {
+        font-size: 1rem;
+    }
 
-.noticia a:hover, .detalle-noticia a:hover {
-    color: #003d66;
+    .ministerio .descripcion h3 {
+        font-size: 1.6rem;
+    }
 }
