@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function () {
     let preguntas = [];
     let preguntaActual = 0;
@@ -47,14 +46,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Mostrar la pregunta y opciones
     function mostrarPregunta() {
-        // Limpiar el intervalo anterior antes de iniciar uno nuevo
         clearInterval(intervalo);
 
         if (errores >= 5) {
             finalizarJuego();
             return;
         }
-        
+
         // Reiniciar el tiempo
         tiempo = 15;
         actualizarTiempo();
@@ -87,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Verificar si la respuesta es correcta o incorrecta
     function verificarRespuesta(opcion) {
-        clearInterval(intervalo); // Detener el intervalo cuando se selecciona una respuesta
+        clearInterval(intervalo);
         const [pregunta] = preguntas.splice(preguntaActual, 1);
 
         if (opcion === pregunta.respuestaCorrecta) {
@@ -103,6 +101,9 @@ document.addEventListener('DOMContentLoaded', function () {
             mostrarMensaje('¡Incorrecto!', 'error');
         }
 
+        sonidoAdvertenciaTiempo.pause(); // Detener el sonido de advertencia si suena
+        sonidoAdvertenciaTiempo.currentTime = 0; // Reiniciar el sonido de advertencia
+
         if (errores >= 5) {
             finalizarJuego();
             return;
@@ -116,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
         tiempo--;
         actualizarTiempo();
 
-        if (tiempo === 10) { // Advertencia a los 10 segundos restantes
+        if (tiempo === 10) { // Reproducir el sonido solo cuando el tiempo esté en 10 segundos
             sonidoAdvertenciaTiempo.play();
         }
 
@@ -124,6 +125,8 @@ document.addEventListener('DOMContentLoaded', function () {
             clearInterval(intervalo);
             errores++;
             sonidoTiempoAgotado.play();
+            sonidoAdvertenciaTiempo.pause(); // Detener el sonido de advertencia si suena
+            sonidoAdvertenciaTiempo.currentTime = 0; // Reiniciar el sonido de advertencia
             mostrarMensaje('¡Tiempo agotado!', 'error');
             setTimeout(mostrarPregunta, 2000);
         }
@@ -147,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Finalizar el juego
     function finalizarJuego() {
-        clearInterval(intervalo); // Asegurarse de detener cualquier intervalo cuando el juego termina
+        clearInterval(intervalo);
         if (menuMusic) {
             menuMusic.pause();
         }
