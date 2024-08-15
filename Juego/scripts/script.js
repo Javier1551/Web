@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let mejorRecord = localStorage.getItem('mejorRecord') || 0;
     let intervalo;
 
-    // Cargar sonidos
+    // Cargar sonidos y música
     const sonidoCorrecto = new Audio('./correcto.mp3');
     const sonidoIncorrecto = new Audio('./incorrecto.mp3');
     const sonidoTiempoAgotado = new Audio('./tiempoAgotado.mp3');
@@ -15,22 +15,21 @@ document.addEventListener('DOMContentLoaded', function () {
     const sonidoAdvertenciaTiempo = new Audio('./tiempo.mp3');
     const sonidoJuegoTerminado = new Audio('./finJuego.mp3');
 
+    // Pre-cargar sonidos
+    [sonidoCorrecto, sonidoIncorrecto, sonidoTiempoAgotado, sonidoBoton, sonidoAdvertenciaTiempo, sonidoJuegoTerminado].forEach(audio => audio.load());
+
     // Cargar música del menú y manejar posibles errores
     const menuMusic = document.getElementById('menuMusic');
     if (menuMusic) {
         menuMusic.volume = 0.5;
-        menuMusic.play().catch(error => {
-            console.error('No se pudo reproducir la música del menú:', error);
-        });
+        menuMusic.play().catch(error => console.error('No se pudo reproducir la música del menú:', error));
     } else {
         console.error('Elemento de música del menú no encontrado');
     }
 
     // Reproducir mensaje de voz en el inicio
     const mensajeVoz = new Audio('./bienvenida.mp3');
-    mensajeVoz.play().catch(error => {
-        console.error('No se pudo reproducir el mensaje de voz:', error);
-    });
+    mensajeVoz.play().catch(error => console.error('No se pudo reproducir el mensaje de voz:', error));
 
     // Cargar preguntas desde el JSON
     async function cargarPreguntas() {
@@ -41,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
             mostrarPregunta();
         } catch (error) {
             console.error('Error al cargar las preguntas:', error);
+            mostrarMensaje('Error al cargar las preguntas. Por favor, intenta nuevamente.', 'error');
         }
     }
 
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Verificar si la respuesta es correcta o incorrecta
     function verificarRespuesta(opcion) {
         clearInterval(intervalo);
-        const pregunta = preguntas.splice(preguntaActual, 1)[0];
+        const [pregunta] = preguntas.splice(preguntaActual, 1);
 
         if (opcion === pregunta.respuestaCorrecta) {
             puntaje++;
@@ -110,14 +110,14 @@ document.addEventListener('DOMContentLoaded', function () {
         tiempo--;
         actualizarTiempo();
 
-        if (tiempo === 10) { // Ajustado a 10 para que la advertencia sea a la mitad del tiempo
+        if (tiempo === 10) { // Advertencia a los 10 segundos restantes
             sonidoAdvertenciaTiempo.play();
         }
 
         if (tiempo <= 0) {
             clearInterval(intervalo);
             errores++;
-            sonidoTiempoAgotado.play(); // Sonido de tiempo agotado
+            sonidoTiempoAgotado.play();
             mostrarMensaje('¡Tiempo agotado!', 'error');
             setTimeout(mostrarPregunta, 2000);
         }
@@ -142,9 +142,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Finalizar el juego
     function finalizarJuego() {
         if (menuMusic) {
-            menuMusic.pause(); // Detener la música al finalizar el juego
+            menuMusic.pause();
         }
-        sonidoJuegoTerminado.play(); // Reproducir sonido de juego terminado
+        sonidoJuegoTerminado.play();
         if (puntaje > mejorRecord) {
             mejorRecord = puntaje;
             localStorage.setItem('mejorRecord', mejorRecord);
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
         setTimeout(() => {
             document.body.classList.add('fade-out');
             setTimeout(() => {
-                window.location.href = '../Juego/indexJuego.html'; // Regresar al menú principal
+                window.location.href = '../Juego/indexJuego.html';
             }, 500);
         }, 5000);
     }
