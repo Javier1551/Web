@@ -34,12 +34,16 @@
     </header>
 
     <main>
-        <section id="menu-principal">
-            <h2>Menú Principal</h2>
-            <button onclick="location.href='juegobiblico.html'; reproducirSonidoBoton();">Comenzar Juego</button>
-            <button onclick="mostrarReglas(); reproducirSonidoBoton();">Reglas del Juego</button>
-        </section>
-
+        
+<section id="menu-principal">
+    <h2>Menú Principal</h2>
+    <button onclick="location.href='juegobiblico.html'; reproducirSonidoBoton();">Comenzar Juego</button>
+    <button onclick="mostrarReglas(); reproducirSonidoBoton();">Reglas del Juego</button>
+    <div id="record-container">
+        <h3>Mejor Récord: <span id="mejor-record"></span></h3>
+    </div>
+</section>
+        
         <section id="reglas" style="display:none;">
             <h2>Reglas del Juego</h2>
             <p>Responde la mayor cantidad de preguntas posible.</p>
