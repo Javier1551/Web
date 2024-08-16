@@ -1,69 +1,171 @@
-let preguntasCorrectas = 0;
-let errores = 0;
-const totalPreguntas = 100; // Ajusta esto si tienes un número diferente de preguntas
+document.addEventListener('DOMContentLoaded', function () {
+    let preguntas = [];
+    let preguntaActual = 0;
+    let errores = 0;
+    let puntaje = 0;
+    let tiempo = 15;
+    let mejorRecord = localStorage.getItem('mejorRecord') || 0;
+    let intervalo;
 
-// Supongamos que este es el código que verifica la respuesta correcta
-function verificarRespuesta(respuesta, respuestaCorrecta) {
-    if (respuesta === respuestaCorrecta) {
-        preguntasCorrectas++;
+    // Cargar sonidos
+    const sonidoCorrecto = new Audio('./correcto.mp3');
+    const sonidoIncorrecto = new Audio('./incorrecto.mp3');
+    const sonidoTiempoAgotado = new Audio('./tiempoAgotado.mp3');
+    const sonidoBoton = new Audio('./Click.mp3');
+    const sonidoAdvertenciaTiempo = new Audio('./tiempo.mp3');
+    const sonidoJuegoTerminado = new Audio('./finJuego.mp3');
+    const audioMotivadorCada10 = new Audio('./sigueasi.mp3');
+    const audioFinDelJuego = new Audio('./findeljuego.mp3');
+    const audioGanasteJuego = new Audio('./mensajemotivaforganadte.mp3');
 
-        // Reproducir audio cada 10 preguntas correctas
-        if (preguntasCorrectas % 10 === 0) {
-            let audioSigueAsi = new Audio('ruta/al/audio/sigueasi.mp3');
-            audioSigueAsi.play();
-
-            mostrarMensajeMotivador("¡Asombroso, Vamos sigue así!");
-        }
-
-        // Verificar si el jugador ha ganado (respondido todas las preguntas correctamente)
-        if (preguntasCorrectas === totalPreguntas) {
-            manejarVictoria();
-        }
-
+    // Cargar música del menú y manejar posibles errores
+    const menuMusic = document.getElementById('menuMusic');
+    if (menuMusic) {
+        menuMusic.volume = 0.5;
+        menuMusic.play().catch(error => {
+            console.error('No se pudo reproducir la música del menú:', error);
+        });
     } else {
-        manejarError();
+        console.error('Elemento de música del menú no encontrado');
     }
-}
 
-function manejarError() {
-    errores++;
-
-    if (errores >= 5) {
-        // Reproducir audio de mensaje motivador de fin del juego por errores
-        let audioFinDelJuego = new Audio('ruta/al/audio/findeljuego.mp3');
-        audioFinDelJuego.play();
-
-        // Mostrar mensaje motivador
-        mostrarMensajeMotivador("Fin del juego. ¡No te desanimes! ¡Sigue intentándolo!");
-
-        // Redirigir al menú principal después de unos segundos
-        setTimeout(function() {
-            window.location.href = 'menuPrincipal.html';
-        }, 6000); // Redirige después de 6 segundos
+    // Cargar preguntas desde el JSON
+    async function cargarPreguntas() {
+        try {
+            const response = await fetch('preguntas.json');
+            const data = await response.json();
+            preguntas = data.preguntas.sort(() => 0.5 - Math.random());
+            mostrarPregunta();
+        } catch (error) {
+            console.error('Error al cargar las preguntas:', error);
+        }
     }
-}
 
-function manejarVictoria() {
-    // Reproducir audio de victoria
-    let audioVictoria = new Audio('ruta/al/audio/mensajemotivaforganadte.mp3');
-    audioVictoria.play();
+    // Mostrar la pregunta y opciones
+    function mostrarPregunta() {
+        if (preguntas.length === 0 || errores >= 5) {
+            finalizarJuego();
+            return;
+        }
 
-    // Mostrar mensaje motivador de victoria
-    mostrarMensajeMotivador("¡Felicidades! ¡Has completado todas las preguntas! Tu conocimiento de la Biblia es asombroso");
+        tiempo = 15;
+        actualizarTiempo();
 
-    // Redirigir al menú principal después de unos segundos
-    setTimeout(function() {
-        window.location.href = 'menuPrincipal.html';
-    }, 10000); // Redirige después de 10 segundos
-}
+        const pregunta = preguntas[preguntaActual];
+        document.getElementById('pregunta').textContent = pregunta.pregunta;
+        const opciones = document.getElementById('opciones');
+        opciones.innerHTML = '';
 
-function mostrarMensajeMotivador(mensaje) {
-    let mensajeElement = document.getElementById('mensajeMotivador');
-    mensajeElement.textContent = mensaje;
-    mensajeElement.style.display = 'block';
+        for (const opcion in pregunta.opciones) {
+            const button = document.createElement('button');
+            button.textContent = `${opcion.toUpperCase()}: ${pregunta.opciones[opcion]}`;
+            button.addEventListener('click', () => {
+                sonidoBoton.play();
+                verificarRespuesta(opcion);
+                desactivarOpciones();
+            });
+            opciones.appendChild(button);
+        }
 
-    // Ocultar el mensaje después de unos segundos
-    setTimeout(function() {
-        mensajeElement.style.display = 'none';
-    }, 6000); // Mostrar el mensaje durante 6 segundos (o más si es necesario)
-}
+        document.getElementById('contador-preguntas').textContent = `Pregunta: ${puntaje + 1}/${preguntas.length}`;
+        intervalo = setInterval(reducirTiempo, 1000);
+    }
+
+    // Desactivar las opciones después de seleccionar una
+    function desactivarOpciones() {
+        const botones = document.querySelectorAll('#opciones button');
+        botones.forEach(boton => boton.disabled = true);
+    }
+
+    // Verificar si la respuesta es correcta o incorrecta
+    function verificarRespuesta(opcion) {
+        clearInterval(intervalo);
+        const pregunta = preguntas.splice(preguntaActual, 1)[0];
+
+        if (opcion === pregunta.respuestaCorrecta) {
+            puntaje++;
+            sonidoCorrecto.play();
+            mostrarMensaje('¡Correcto!', 'success');
+            if (puntaje % 10 === 0 && preguntas.length > 0) {
+                mostrarMensaje('¡Asombroso, Vamos sigue así!', 'motivacion');
+                audioMotivadorCada10.play();
+            }
+        } else {
+            errores++;
+            sonidoIncorrecto.play();
+            mostrarMensaje('¡Incorrecto!', 'error');
+        }
+
+        if (errores >= 5 || preguntas.length === 0) {
+            finalizarJuego();
+            return;
+        }
+
+        setTimeout(mostrarPregunta, 2000);
+    }
+
+    // Reducir el tiempo del contador
+    function reducirTiempo() {
+        tiempo--;
+        actualizarTiempo();
+
+        if (tiempo === 10) { // Ajustado a 10 para que la advertencia sea a la mitad del tiempo
+            sonidoAdvertenciaTiempo.play();
+        }
+
+        if (tiempo <= 0) {
+            clearInterval(intervalo);
+            errores++;
+            sonidoTiempoAgotado.play(); // Sonido de tiempo agotado
+            mostrarMensaje('¡Tiempo agotado!', 'error');
+            setTimeout(mostrarPregunta, 2000);
+        }
+    }
+
+    // Actualizar el tiempo en la pantalla
+    function actualizarTiempo() {
+        document.getElementById('contador-tiempo').textContent = `Tiempo: ${tiempo}s`;
+    }
+
+    // Mostrar mensaje en pantalla
+    function mostrarMensaje(mensaje, tipo) {
+        const mensajeElemento = document.getElementById('mensaje');
+        mensajeElemento.textContent = mensaje;
+        mensajeElemento.className = tipo;
+        setTimeout(() => {
+            mensajeElemento.textContent = '';
+            mensajeElemento.className = '';
+        }, 2000);
+    }
+
+    // Finalizar el juego
+    function finalizarJuego() {
+        if (menuMusic) {
+            menuMusic.pause(); // Detener la música al finalizar el juego
+        }
+
+        if (puntaje > mejorRecord) {
+            mejorRecord = puntaje;
+            localStorage.setItem('mejorRecord', mejorRecord);
+        }
+
+        if (errores >= 5) {
+            mostrarMensaje('Fin del juego. ¡No te desanimes! ¡Sigue intentándolo!', 'motivacion');
+            audioFinDelJuego.play(); // Reproducir sonido de juego terminado
+        } else {
+            mostrarMensaje('¡Felicidades! ¡Has completado todas las preguntas! Tu conocimiento de la Biblia es Asombroso', 'motivacion');
+            audioGanasteJuego.play(); // Reproducir sonido de victoria
+        }
+
+        setTimeout(() => {
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = '../Juego/indexJuego.html'; // Regresar al menú principal
+            }, 500);
+        }, errores >= 5 ? 6000 : 10000);
+    }
+
+    // Iniciar el juego
+    cargarPreguntas();
+    document.getElementById('mejor-record').textContent = mejorRecord;
+});
