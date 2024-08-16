@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Pathway+Gothic+One&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 </head>
-<body onload="reproducirMensaje()">
+<body onload="actualizarMejorRecord()">
     <header>
         <h1>Bienvenido al Juego Bíblico</h1>
         <h2>¿Qué tanto sabes de la Biblia?</h2>
@@ -38,17 +38,33 @@
             <h2>Menú Principal</h2>
             <button onclick="location.href='juegobiblico.html'; reproducirSonidoBoton();">Comenzar Juego</button>
             <button onclick="mostrarReglas(); reproducirSonidoBoton();">Reglas del Juego</button>
-            <div id="record-container">
-                <h3>Récord: <span id="mejor-record"></span></h3>
+            <div id="mejor-record-container">
+                <h3>Mejor Récord: <span id="mejor-record">0</span></h3>
             </div>
         </section>
 
         <section id="reglas" style="display:none;">
             <h2>Reglas del Juego</h2>
-            <p>1. Responde correctamente a las preguntas antes de que se acabe el tiempo.</p>
-            <p>2. Tienes un límite de 5 errores antes de que termine el juego.</p>
-            <p>3. Si logras responder todas las preguntas correctamente, ¡ganas!</p>
-            <button onclick="ocultarReglas(); reproducirSonidoBoton();">Volver al Menú</button>
+            <p>Responde la mayor cantidad de preguntas posible.</p>
+            <p>Tienes 15 segundos para responder cada pregunta.</p>
+            <p>El juego termina cuando cometes 5 errores o respondes todas las preguntas.</p>
+            <button onclick="ocultarReglas(); reproducirSonidoBoton();">Volver</button>
+        </section>
+
+        <section id="redes-sociales">
+            <h2>Síguenos en redes sociales</h2>
+            <div class="social-buttons">
+                <a href="https://www.facebook.com/misionvidaoficial?mibextid=ZbWKwL" target="_blank" class="social-button facebook">Facebook</a>
+                <a href="https://www.instagram.com/misionvidaoficial/" target="_blank" class="social-button instagram">Instagram</a>
+                <a href="https://www.youtube.com/@misionvidaoficial9413" target="_blank" class="social-button youtube">YouTube</a>
+            </div>
+        </section>
+
+        <section>
+            <h2>Contáctanos</h2>
+            <p>Email: fcmisionvida@gmail.com</p>
+            <p>Teléfono: (353) 456-7890</p>
+            <p>Dirección: Calle: Gorrti 250, Ciudad: Villa Maria</p>
         </section>
     </main>
 
@@ -56,6 +72,29 @@
         <p>&copy; 2024 Iglesia Cristiana Mision Vida. Todos los derechos reservados.</p>
     </footer>
 
-    <script src="scripts/menu.js"></script>
+    <audio id="mensajeVoz" src="bienvenida.mp3"></audio>
+    <audio id="sonidoBoton" src="Click.mp3"></audio>
+
+    <script>
+        function mostrarReglas() {
+            document.getElementById('menu-principal').style.display = 'none';
+            document.getElementById('reglas').style.display = 'block';
+        }
+
+        function ocultarReglas() {
+            document.getElementById('menu-principal').style.display = 'block';
+            document.getElementById('reglas').style.display = 'none';
+        }
+
+        function reproducirSonidoBoton() {
+            const sonidoBoton = document.getElementById('sonidoBoton');
+            sonidoBoton.play().catch(error => console.error('Error al reproducir el sonido del botón:', error));
+        }
+
+        function actualizarMejorRecord() {
+            const mejorRecord = localStorage.getItem('mejorRecord') || 0;
+            document.getElementById('mejor-record').textContent = mejorRecord;
+        }
+    </script>
 </body>
-</html>
+    </html>
