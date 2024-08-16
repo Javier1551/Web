@@ -15,6 +15,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const sonidoAdvertenciaTiempo = new Audio('./tiempo.mp3');
     const sonidoJuegoTerminado = new Audio('./finJuego.mp3');
 
+    // Mostrar el mejor récord al cargar el menú principal
+    const mejorRecord = localStorage.getItem('mejorRecord') || 0;
+    document.getElementById('mejor-record').textContent = mejorRecord;
+
+    
     // Pre-cargar sonidos
     [sonidoCorrecto, sonidoIncorrecto, sonidoTiempoAgotado, sonidoBoton, sonidoAdvertenciaTiempo, sonidoJuegoTerminado].forEach(audio => audio.load());
 
