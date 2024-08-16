@@ -7,6 +7,12 @@ document.addEventListener('DOMContentLoaded', function () {
     let mejorRecord = localStorage.getItem('mejorRecord') || 0;
     let intervalo;
 
+    // Actualizar el récord en el menú principal
+    const recordContainer = document.getElementById('mejor-record');
+    if (recordContainer) {
+        recordContainer.textContent = mejorRecord;
+    }
+
     // Cargar sonidos
     const sonidoCorrecto = new Audio('./correcto.mp3');
     const sonidoIncorrecto = new Audio('./incorrecto.mp3');
@@ -32,9 +38,6 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error('No se pudo reproducir el mensaje de voz:', error);
     });
 
-    // Mostrar el mejor récord al cargar el menú principal
-    document.getElementById('mejor-record').textContent = mejorRecord;
-
     // Cargar preguntas desde el JSON
     async function cargarPreguntas() {
         try {
@@ -49,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Mostrar la pregunta y opciones
     function mostrarPregunta() {
-        if (errores >= 5) {
+        if (errores >= 5 || preguntas.length === 0) {
             finalizarJuego();
             return;
         }
@@ -100,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
             mostrarMensaje('¡Incorrecto!', 'error');
         }
 
-        if (errores >= 5) {
+        if (errores >= 5 || preguntas.length === 0) {
             finalizarJuego();
             return;
         }
