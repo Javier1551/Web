@@ -450,10 +450,8 @@
             },
             "respuestaCorrecta": "a"
         }
+        {
 
-        {
-    "preguntas": [
-        {
             "pregunta": "¿Quién fue la madre de Jesús?",
             "opciones": {
                 "a": "Marta",
@@ -678,10 +676,7 @@
             },
             "respuestaCorrecta": "a"
         }
-    ]
-}
-{
-    "preguntas": [
+    
         {
             "pregunta": "¿Quién fue el profeta que enfrentó a los profetas de Baal en el Monte Carmelo?",
             "opciones": {
@@ -907,7 +902,5 @@
             },
             "respuestaCorrecta": "a"
         }
-    ]
-}
-    ]
-}
+    
+
