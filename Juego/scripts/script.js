@@ -6,8 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
     let tiempo = 15;
     let mejorRecord = localStorage.getItem('mejorRecord') || 0;
     let intervalo;
-    const mensajeMotivador = "¡Bien hecho!"; // Mensaje motivador al ganar
-    const mensajePerdedor = "¡Sigue intentándolo!"; // Mensaje motivador al perder
 
     // Cargar sonidos
     const sonidoCorrecto = new Audio('./correcto.mp3');
@@ -16,7 +14,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const sonidoBoton = new Audio('./Click.mp3');
     const sonidoAdvertenciaTiempo = new Audio('./tiempo.mp3');
     const sonidoJuegoTerminado = new Audio('./finJuego.mp3');
-    const sonidoMotivador = new Audio('./motivacion.mp3'); // Audio motivador para cada 10 preguntas correctas
+    const audioMotivador = new Audio('./motivacion.mp3');
+
+    // Cargar música del menú y manejar posibles errores
+    const menuMusic = document.getElementById('menuMusic');
+    if (menuMusic) {
+        menuMusic.volume = 0.5;
+        menuMusic.play().catch(error => {
+            console.error('No se pudo reproducir la música del menú:', error);
+        });
+    } else {
+        console.error('Elemento de música del menú no encontrado');
+    }
 
     // Cargar preguntas desde el JSON
     async function cargarPreguntas() {
@@ -32,10 +41,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Mostrar la pregunta y opciones
     function mostrarPregunta() {
-        if (errores >= 5 || preguntas.length === 0) {
+        if (preguntas.length === 0 || errores >= 5) {
             finalizarJuego();
             return;
         }
+
         tiempo = 15;
         actualizarTiempo();
 
@@ -55,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
             opciones.appendChild(button);
         }
 
-        document.getElementById('contador-preguntas').textContent = `Pregunta: ${preguntaActual + 1}/${preguntas.length}`;
+        document.getElementById('contador-preguntas').textContent = `Pregunta: ${puntaje + 1}/${preguntas.length}`;
         intervalo = setInterval(reducirTiempo, 1000);
     }
 
@@ -68,20 +78,25 @@ document.addEventListener('DOMContentLoaded', function () {
     // Verificar si la respuesta es correcta o incorrecta
     function verificarRespuesta(opcion) {
         clearInterval(intervalo);
-        const pregunta = preguntas.splice(preguntaActual, 1)[0]; // Remover pregunta actual
+        const pregunta = preguntas.splice(preguntaActual, 1)[0];
 
         if (opcion === pregunta.respuestaCorrecta) {
             puntaje++;
             sonidoCorrecto.play();
             mostrarMensaje('¡Correcto!', 'success');
-            if (puntaje % 10 === 0) {
-                sonidoMotivador.play();
+            if (puntaje % 10 === 0 && preguntas.length > 0) {
                 mostrarMensaje('¡Sigue así! ¡Estás haciendo un gran trabajo!', 'motivacion');
+                audioMotivador.play();
             }
         } else {
             errores++;
             sonidoIncorrecto.play();
             mostrarMensaje('¡Incorrecto!', 'error');
+        }
+
+        if (errores >= 5 || preguntas.length === 0) {
+            finalizarJuego();
+            return;
         }
 
         setTimeout(mostrarPregunta, 2000);
@@ -92,59 +107,62 @@ document.addEventListener('DOMContentLoaded', function () {
         tiempo--;
         actualizarTiempo();
 
+        if (tiempo === 10) { // Ajustado a 10 para que la advertencia sea a la mitad del tiempo
+            sonidoAdvertenciaTiempo.play();
+        }
+
         if (tiempo <= 0) {
             clearInterval(intervalo);
-            sonidoTiempoAgotado.play();
-            verificarRespuesta(null); // Tratamos como si se hubiera quedado sin tiempo
+            errores++;
+            sonidoTiempoAgotado.play(); // Sonido de tiempo agotado
+            mostrarMensaje('¡Tiempo agotado!', 'error');
+            setTimeout(mostrarPregunta, 2000);
         }
     }
 
     // Actualizar el tiempo en la pantalla
     function actualizarTiempo() {
         document.getElementById('contador-tiempo').textContent = `Tiempo: ${tiempo}s`;
-        if (tiempo <= 5 && tiempo > 0) {
-            sonidoAdvertenciaTiempo.play();
-        }
     }
 
-    // Mostrar mensaje al usuario
+    // Mostrar mensaje en pantalla
     function mostrarMensaje(mensaje, tipo) {
-        const mensajeElement = document.getElementById('mensaje');
-        mensajeElement.textContent = mensaje;
-        mensajeElement.className = tipo;
+        const mensajeElemento = document.getElementById('mensaje');
+        mensajeElemento.textContent = mensaje;
+        mensajeElemento.className = tipo;
         setTimeout(() => {
-            mensajeElement.textContent = '';
-            mensajeElement.className = '';
-        }, tipo === 'motivacion' ? 6000 : 2000);
+            mensajeElemento.textContent = '';
+            mensajeElemento.className = '';
+        }, 2000);
     }
 
     // Finalizar el juego
     function finalizarJuego() {
-        clearInterval(intervalo);
+        if (menuMusic) {
+            menuMusic.pause(); // Detener la música al finalizar el juego
+        }
+        sonidoJuegoTerminado.play(); // Reproducir sonido de juego terminado
+
         if (puntaje > mejorRecord) {
             mejorRecord = puntaje;
             localStorage.setItem('mejorRecord', mejorRecord);
         }
+
         if (errores >= 5) {
-            mostrarMensaje(mensajePerdedor, 'error');
-            setTimeout(() => {
-                sonidoJuegoTerminado.play();
-                // Aquí puedes redirigir al menú o hacer otra cosa después de 6 segundos
-            }, 6000);
+            mostrarMensaje('¡No te desanimes! ¡Sigue intentándolo!', 'motivacion');
         } else {
-            mostrarMensaje(mensajeMotivador, 'success');
-            setTimeout(() => {
-                sonidoJuegoTerminado.play();
-                // Aquí puedes redirigir al menú o hacer otra cosa después de 10 segundos
-            }, 10000);
+            mostrarMensaje('¡Felicidades! Has completado todas las preguntas!', 'motivacion');
         }
-        actualizarMejorRecord(); // Actualizar el mejor récord al finalizar el juego
+
+        setTimeout(() => {
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = '../Juego/indexJuego.html'; // Regresar al menú principal
+            }, 500);
+        }, errores >= 5 ? 6000 : 10000);
     }
 
-    // Actualizar el mejor récord en la pantalla
-    function actualizarMejorRecord() {
-        document.getElementById('mejor-record').textContent = mejorRecord;
-    }
-
+    // Iniciar el juego
     cargarPreguntas();
+    document.getElementById('mejor-record').textContent = mejorRecord;
 });
