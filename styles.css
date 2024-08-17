@@ -179,27 +179,27 @@ img {
 }
 
 #redes-sociales a {
-    margin: 0 10px;
+    margin: 0 8px;  /* Reducir espacio entre botones */
     color: #d2dbe0;
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 1rem; /* Reducir tamaño de la fuente */
 }
 
 .social-buttons {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 10px; /* Reducir espacio entre botones */
 }
 
 .social-button {
-    padding: 10px 20px;
+    padding: 8px 16px; /* Reducir tamaño de los botones */
     border-radius: 5px;
     color: white;
     text-decoration: none;
     font-weight: bold;
     transition: background-color 0.3s ease;
     font-family: Arial, sans-serif;
-    font-size: 1.1rem;
+    font-size: 1rem; /* Reducir tamaño de la fuente */
 }
 
 .facebook {
