@@ -24,7 +24,8 @@ header {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 500px;
+    height: auto; /* Ajuste automático en base al contenido */
+    min-height: 300px; /* Mínimo para evitar que sea demasiado pequeña */
     position: relative;
     display: flex;
     justify-content: center;
@@ -46,7 +47,7 @@ header {
     position: relative;
     z-index: 1;
     color: rgb(255, 6, 234);
-    max-width: 800px;
+    max-width: 90%; /* Ajuste para pantallas pequeñas */
     padding: 20px;
 }
 
@@ -121,6 +122,30 @@ h1, h2 {
     display: inline-block;
     max-width: 300px;
     margin-right: 15px;
+}
+
+/* Videos Responsivos */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Imágenes Responsivas */
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 /* Estilos específicos para la sección de versículo bíblico */
