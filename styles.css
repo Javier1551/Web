@@ -179,7 +179,7 @@ img {
 }
 
 #redes-sociales a {
-    margin: 0 8px;  /* Reducir espacio entre botones */
+    margin: 0 6px;  /* Reducir espacio entre botones */
     color: #d2dbe0;
     text-decoration: none;
     font-size: 1rem; /* Reducir tamaño de la fuente */
@@ -188,7 +188,7 @@ img {
 .social-buttons {
     display: flex;
     justify-content: center;
-    gap: 7px; /* Reducir espacio entre botones */
+    gap: 5px; /* Reducir espacio entre botones */
 }
 
 .social-button {
