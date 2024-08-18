@@ -169,5 +169,26 @@
     </div>
 
     <script src="script.js" defer></script>
+
+    <script>
+function onSignIn(googleUser) {
+    // Obtén el perfil de Google del usuario
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // No lo uses en el frontend
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail());
+
+    // Envía los datos al servidor para registrarlos
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'process_registration.php');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+        console.log('Registrado correctamente: ' + xhr.responseText);
+    };
+    xhr.send('name=' + profile.getName() + '&email=' + profile.getEmail());
+}
+    </script>
+    
 </body>
 </html>
