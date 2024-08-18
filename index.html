@@ -1,16 +1,37 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iglesia Cristiana</title>
     <link rel="stylesheet" href="styles.css">
-    <meta name="google-signin-client_id" content="TU_CLIENT_ID.apps.googleusercontent.com">
-<script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="246366046677-9f78v2c3oc8hmgjh7jhud0smf34mc4r6.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Pathway+Gothic+One&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js"></script>
+    <script>
+        // Tu configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyBkyEvvRyTEA56egP1LwbTuhUuAD5Xrtbc",
+            authDomain: "misionvidadatos.firebaseapp.com",
+            projectId: "misionvidadatos",
+            storageBucket: "misionvidadatos.appspot.com",
+            messagingSenderId: "246366046677",
+            appId: "1:246366046677:web:1234567890abcdef"
+        };
+        // Inicializa Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+    </script>
 </head>
+
 <body>
     <header>
         <section id="inicio" class="hero">
@@ -36,23 +57,22 @@
                 <li><a href="Ministerios.html">Ministerios</a></li>
                 <li><a href="Juego/indexJuego.html">Juego Bíblico</a></li>
             </ul>
-        </nav>        
+        </nav>
     </header>
-
 
     <main>
         <!-- Presentacion -->
         <section id="nosotros">
             <h2>Sobre Nosotros</h2>
             <p>Somos un grupo de personas que ama a Dios y servimos al prójimo, llevándoles buenas noticias.
-                Nuestro propósito es declarar la salvación mediante la obra 
+                Nuestro propósito es declarar la salvación mediante la obra
                 de Jesucristo y por el poder del Espíritu Santo haya vidas
                 transformadas de niños, mujeres y hombres que impacten en familias y en la comunidad con un
                 trabajo integral sobre las personas a través del arte, talleres de capacitación y educación espiritual, restaurando las capacidades y valores humanos.
             </p>
         </section>
 
-          <!-- Versiculos -->       
+        <!-- Versiculos -->
         <section id="versiculo-biblico">
             <h2>Versículo del Día</h2>
             <select id="version-biblia">
@@ -65,19 +85,17 @@
             </div>
         </section>
 
-
-         <!-- Nuestros Cultos -->
+        <!-- Nuestros Cultos -->
         <section id="Culto">
             <h2>Nuestras Reuniones</h2>
-                <li>- Reunion general: Sábados 20:30 horas</li>
-                <li>- Reunión de oración: Jueves 20:30 horas</li>
-                <li>- Pre Adolescente: Viernes 20:00 horas</li>
-                <li>- Adolescentes: Viernes 21.00 horas</li>
-                <li>- Jóvenes: Viernes 21:30 horas</li>
+            <li>- Reunion general: Sábados 20:30 horas</li>
+            <li>- Reunión de oración: Jueves 20:30 horas</li>
+            <li>- Pre Adolescente: Viernes 20:00 horas</li>
+            <li>- Adolescentes: Viernes 21.00 horas</li>
+            <li>- Jóvenes: Viernes 21:30 horas</li>
         </section>
 
-
-       <!-- section Ultimo Sermon -->
+        <!-- section Ultimo Sermon -->
         <section id="video" class="full-screen-video">
             <h2>Nuestro último sermón</h2>
             <div class="video-container">
@@ -87,7 +105,7 @@
             </div>
         </section>
 
-
+        <!-- Galería de fotos -->
         <section id="galeria" class="scroll-horizontal">
             <h2>Galería de fotos</h2>
             <div class="fotos">
@@ -113,82 +131,58 @@
             </div>
         </section>
 
-<section id="registro">
-    <h2>Regístrate para recibir noticias</h2>
-    <form action="process_registration.php" method="POST">
-        <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name" required><br>
-        <label for="email">Correo Electrónico:</label>
-        <input type="email" id="email" name="email" required><br>
-        <input type="submit" value="Registrarse">
-    </form>
-</section>
-
+        <!-- Sección de registro -->
         <section id="registro">
-    <h2>Regístrate para recibir noticias</h2>
-    <form action="process_registration.php" method="POST">
-        <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name" required><br>
-        <label for="email">Correo Electrónico:</label>
-        <input type="email" id="email" name="email" required><br>
-        <input type="submit" value="Registrarse">
-    </form>
-    
-    <h3>O regístrate con Google</h3>
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <h2>Regístrate para recibir noticias</h2>
+            <form action="process_registration.php" method="POST">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" required><br>
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" required><br>
+                <input type="submit" value="Registrarse">
+            </form>
+
+            <h3>O regístrate con Google</h3>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
         </section>
-        
+
+        <!-- Sección de redes sociales -->
         <section id="redes-sociales">
             <h2>Síguenos en redes sociales</h2>
             <div class="social-buttons">
                 <a href="https://www.facebook.com/misionvidaoficial?mibextid=ZbWKwL" target="_blank" class="social-button facebook">Facebook</a>
                 <a href="https://www.instagram.com/misionvidaoficial/" target="_blank" class="social-button instagram">Instagram</a>
-                <a href="https://www.youtube.com/@misionvidaoficial9413" target="_blank" class="social-button youtube">YouTube</a>
+                <a href="https://www.youtube.com/c/FundacionMisionVida" target="_blank" class="social-button youtube">YouTube</a>
             </div>
         </section>
-
-        <section id="contacto">
-            <h2>Contáctanos</h2>
-            <p>Email: fcmisionvida@gmail.com</p>
-            <p>Teléfono: (353) 456-7890</p>
-            <p>Dirección: Calle: Gorrti 250, Ciudad: Villa Maria</p>
-        </section>
-
     </main>
 
     <footer>
-        <p>&copy; 2024 Iglesia Cristiana Mision Vida. Todos los derechos reservados.</p>
+        <p>&copy; 2024 Iglesia Cristiana. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- Modal para ver imágenes a tamaño completo -->
-    <div id="modal" class="modal">
-        <span class="close" id="close">&times;</span>
-        <div class="modal-content" id="modal-content">
-            <img id="modal-img" src="" alt="">
-        </div>
-    </div>
-
-    <script src="script.js" defer></script>
-
     <script>
-function onSignIn(googleUser) {
-    // Obtén el perfil de Google del usuario
-    var profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); // No lo uses en el frontend
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail());
+        // Función para manejar el inicio de sesión con Google
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('Nombre: ' + profile.getName());
+            console.log('Imagen URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail());
 
-    // Envía los datos al servidor para registrarlos
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'process_registration.php');
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onload = function() {
-        console.log('Registrado correctamente: ' + xhr.responseText);
-    };
-    xhr.send('name=' + profile.getName() + '&email=' + profile.getEmail());
-}
+            // Aquí puedes guardar la información del usuario en Firebase
+            var id_token = googleUser.getAuthResponse().id_token;
+
+            auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(id_token))
+                .then((result) => {
+                    console.log("Usuario autenticado correctamente");
+                    // Aquí puedes redirigir al usuario o mostrar información adicional
+                })
+                .catch((error) => {
+                    console.error("Error al autenticar al usuario: ", error);
+                });
+        }
     </script>
-    
+
 </body>
+
 </html>
